@@ -1,20 +1,21 @@
 #include <SoftwareSerial.h>
 #include <Adafruit_NeoPixel.h>
+
 #include "Commands.h"
 
-#define SERIAL_TX   	0
-#define SERIAL_RX   	1
-#define LED_PIN     	3
-#define LED_COUNT   	6
-#define BRIGHTNESS		255
+#define SERIAL_TX 0
+#define SERIAL_RX 1
+#define LED_PIN 3
+#define LED_COUNT 6
+#define BRIGHTNESS 255
 
 // Individual LED addresses
-#define LED_HP			0
-#define LED_PSI			1
-#define FRONT_LOGIC_1	2
-#define FRONT_LOGIC_2	3
-#define REAR_LOGIC_1	4
-#define REAR_LOGIC_2	5
+#define LED_HP 0
+#define LED_PSI 1
+#define FRONT_LOGIC_1 2
+#define FRONT_LOGIC_2 3
+#define REAR_LOGIC_1 4
+#define REAR_LOGIC_2 5
 
 SoftwareSerial Bluetooth(SERIAL_RX, SERIAL_TX);
 
@@ -30,10 +31,10 @@ void setup()
 	pixels.setBrightness(BRIGHTNESS);
 	pixels.show();
 
-	// HP LED
+	// HP
 	pixels.setPixelColor(LED_HP, pixels.Color(0, 0, 255));
 
-	// PSI LED
+	// PSI
 	pixels.setPixelColor(LED_PSI, pixels.Color(255, 255, 255));
 
 	// Front Logic
@@ -52,9 +53,10 @@ void loop()
 	// Process bluetooth command
 	if (Bluetooth.available() > 0)
 	{
-		char data = (char) Bluetooth.read();
-		
-		switch (data) {
+		char data = (char)Bluetooth.read();
+
+		switch (data)
+		{
 		case CMD_BATTERY_LOW:
 			enterLowBatteryMode();
 			break;
