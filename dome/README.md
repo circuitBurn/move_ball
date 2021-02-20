@@ -7,3 +7,7 @@
 * [Lithium Ion Battery](https://www.adafruit.com/product/2011)
 * [6 Neopixels](https://www.adafruit.com/product/1260)
 * [SPDT Slide Switch](https://www.adafruit.com/product/805)
+
+### Schematic
+
+### Images
