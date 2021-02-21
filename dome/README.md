@@ -10,4 +10,9 @@
 
 ### Schematic
 
+
+### Notes
+If you've installed the LiPoly Backpack you can recharge the battery by plugging in the Trinket to a USB power supply.
+
+
 ### Images

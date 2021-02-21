@@ -23,51 +23,51 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_K
 
 void setup()
 {
-	// Connect to bluetooth
-	Bluetooth.begin(9600);
+    // Connect to bluetooth
+    Bluetooth.begin(9600);
 
-	// Neopixel setup
-	pixels.begin();
-	pixels.setBrightness(BRIGHTNESS);
-	pixels.show();
+    // Neopixel setup
+    pixels.begin();
+    pixels.setBrightness(BRIGHTNESS);
+    pixels.show();
 
-	// HP
-	pixels.setPixelColor(LED_HP, pixels.Color(0, 0, 255));
+    // HP
+    pixels.setPixelColor(LED_HP, pixels.Color(0, 0, 255));
 
-	// PSI
-	pixels.setPixelColor(LED_PSI, pixels.Color(255, 255, 255));
+    // PSI
+    pixels.setPixelColor(LED_PSI, pixels.Color(0, 0, 0));
 
-	// Front Logic
-	pixels.setPixelColor(FRONT_LOGIC_1, pixels.Color(255, 255, 255));
-	pixels.setPixelColor(FRONT_LOGIC_2, pixels.Color(255, 255, 255));
+    // Front Logic
+    pixels.setPixelColor(FRONT_LOGIC_1, pixels.Color(255, 255, 255));
+    pixels.setPixelColor(FRONT_LOGIC_2, pixels.Color(255, 255, 255));
 
-	// Read Logic
-	pixels.setPixelColor(REAR_LOGIC_1, pixels.Color(0, 0, 255));
-	pixels.setPixelColor(REAR_LOGIC_2, pixels.Color(0, 0, 255));
+    // Read Logic
+    pixels.setPixelColor(REAR_LOGIC_1, pixels.Color(0, 0, 255));
+    pixels.setPixelColor(REAR_LOGIC_2, pixels.Color(0, 0, 255));
 
-	pixels.show();
+    pixels.show();
 }
 
 void loop()
 {
-	// Process bluetooth command
-	if (Bluetooth.available() > 0)
-	{
-		char data = (char)Bluetooth.read();
+    // Process bluetooth command
+    if (Bluetooth.available() > 0)
+    {
+        char data = (char)Bluetooth.read();
 
-		switch (data)
-		{
-		case CMD_BATTERY_LOW:
-			enterLowBatteryMode();
-			break;
-		case CMD_PSI_OFF:
-			psiOff();
-			break;
-		case CMD_PSI_ON:
-			psiOn();
-			break;
-		}
-	}
+        switch (data)
+        {
+        case CMD_BATTERY_LOW:
+            enterLowBatteryMode();
+            break;
+        case CMD_PSI_OFF:
+            psiOff();
+            break;
+        case CMD_PSI_ON:
+            psiOn();
+            break;
+        }
+    }
 }
 
 /**
@@ -75,19 +75,19 @@ void loop()
  */
 void enterLowBatteryMode()
 {
-	pixels.setPixelColor(FRONT_LOGIC_1, pixels.Color(255, 0, 0));
-	pixels.setPixelColor(FRONT_LOGIC_2, pixels.Color(255, 0, 0));
-	pixels.show();
+    pixels.setPixelColor(FRONT_LOGIC_1, pixels.Color(255, 0, 0));
+    pixels.setPixelColor(FRONT_LOGIC_2, pixels.Color(255, 0, 0));
+    pixels.show();
 }
 
 void psiOn()
 {
-	pixels.setPixelColor(LED_PSI, 255, 255, 255, BRIGHTNESS);
-	pixels.show();
+    pixels.setPixelColor(LED_PSI, pixels.Color(255, 255, 255));
+    pixels.show();
 }
 
 void psiOff()
 {
-	pixels.setPixelColor(LED_PSI, 255, 255, 255, 0);
-	pixels.show();
+    pixels.setPixelColor(LED_PSI, pixels.Color(0, 0, 0));
+    pixels.show();
 }
